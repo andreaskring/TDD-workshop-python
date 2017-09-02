@@ -1,3 +1,6 @@
+from .address import address
+
+
 class Person(object):
 
     def __init__(self, name: str, cpr: str):
@@ -40,4 +43,4 @@ class Person(object):
         Get the address of the person from the CPR number.
         :return: The address of the person.
         """
-        pass
+        return address.fetch_address(self.cpr)

@@ -1,4 +1,5 @@
 import unittest
+import mock
 
 from production.person import Person
 
@@ -42,6 +43,18 @@ class TestPerson(unittest.TestCase):
 
     def test_should_return_010117_1112_when_cpr_is_010117_1112(self):
         self.assertEqual('010117-1112', self.person2.get_cpr_number())
+
+    # Tesing get_address
+
+    @mock.patch('production.person.address.fetch_address')
+    def test_should_return_address_addr1(self, mock):
+        mock.return_value = 'addr1'
+        self.assertEqual('addr1', self.person1.get_address())
+
+    @mock.patch('production.person.address.fetch_address')
+    def test_should_return_address_addr2(self, mock):
+        mock.return_value = 'addr2'
+        self.assertEqual('addr2', self.person2.get_address())
 
 
 if __name__ == '__main__':
