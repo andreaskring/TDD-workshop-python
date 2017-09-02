@@ -1,5 +1,10 @@
 class Person(object):
 
+    def __init__(self, name: str):
+        if not name:
+            raise ValueError('Name cannot be blank!')
+        self.name = name
+
     def get_cpr_number(self) -> str:
         """
         Get the CPR number of a person
@@ -12,7 +17,7 @@ class Person(object):
         Get the name of the person
         :return: Full name of the person.
         """
-        pass
+        return self.name
 
     def is_cpr_number_valid(self) -> bool:
         """
