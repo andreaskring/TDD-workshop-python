@@ -1,9 +1,7 @@
 class Person(object):
 
     def __init__(self, name: str):
-        if not name:
-            raise ValueError('Name cannot be blank!')
-        self.name = name
+        self.set_name(name)
 
     def get_cpr_number(self) -> str:
         """
@@ -32,7 +30,9 @@ class Person(object):
         :param name: The full name of the person.
         :raises ValueError: If string is empty.
         """
-        pass
+        if not name:
+            raise ValueError('Name cannot be blank!')
+        self.name = name
 
     def get_address(self) -> str:
         """
