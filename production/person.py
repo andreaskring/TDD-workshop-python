@@ -1,14 +1,15 @@
 class Person(object):
 
-    def __init__(self, name: str):
+    def __init__(self, name: str, cpr: str):
         self.set_name(name)
+        self.cpr = cpr
 
     def get_cpr_number(self) -> str:
         """
         Get the CPR number of a person
         :return: CPR number, e.g. 241217-1111
         """
-        pass
+        return self.cpr
 
     def get_name(self) -> str:
         """
