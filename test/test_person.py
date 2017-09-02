@@ -44,7 +44,7 @@ class TestPerson(unittest.TestCase):
     def test_should_return_010117_1112_when_cpr_is_010117_1112(self):
         self.assertEqual('010117-1112', self.person2.get_cpr_number())
 
-    # Tesing get_address
+    # Testing get_address
 
     @mock.patch('production.person.address.fetch_address')
     def test_should_return_address_addr1(self, mock):
@@ -55,6 +55,31 @@ class TestPerson(unittest.TestCase):
     def test_should_return_address_addr2(self, mock):
         mock.return_value = 'addr2'
         self.assertEqual('addr2', self.person2.get_address())
+
+    # Testing is_cpr_number_valid
+
+    def test_should_return_true_when_cpr_is_010117_1111(self):
+        self.assertTrue(self.person1.is_cpr_number_valid())
+
+    def test_should_return_false_when_cpr_is_400117_1111(self):
+        person = Person('name', '40010117-1111')
+        self.assertFalse(person.is_cpr_number_valid())
+
+    def test_should_return_false_when_cpr_is_012117_1111(self):
+        person = Person('name', '012117-1111')
+        self.assertFalse(person.is_cpr_number_valid())
+
+    def test_should_return_false_when_cpr_is_010117x_1111(self):
+        person = Person('name', '010117x-1111')
+        self.assertFalse(person.is_cpr_number_valid())
+
+    def test_should_return_false_when_cpr_is_010117_xxxx(self):
+        person = Person('name', '010117-xxxx')
+        self.assertFalse(person.is_cpr_number_valid())
+
+    def test_should_return_false_when_cpr_is_010117_11111(self):
+        person = Person('name', '010117x-11111')
+        self.assertFalse(person.is_cpr_number_valid())
 
 
 if __name__ == '__main__':

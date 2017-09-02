@@ -1,3 +1,5 @@
+import re
+
 from .address import address
 
 
@@ -26,7 +28,11 @@ class Person(object):
         Check if the CPR number is valid.
         :return: True if the CPR number is valid and False otherwise.
         """
-        pass
+        regex = re.compile('[0-3][0-9][0-1][0-9]{3}-[0-9]{4}')
+        match = regex.match(self.cpr)
+        if match:
+            return True
+        return False
 
     def set_name(self, name: str):
         """
